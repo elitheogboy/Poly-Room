@@ -1,598 +1,427 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111916">
-  <meta name="description"
-        content="Poly Room: The Clean Side — a new chapter in social VR.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a120e">
+  <meta name="description" content="Poly Room: The Clean Side — A new chapter in social VR.">
   <title>Poly Room: The Clean Side</title>
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#0a120e',
+              surface: 'rgba(21, 34, 27, 0.65)',
+              border: 'rgba(52, 75, 62, 0.5)',
+              accent: '#d1ef9d',
+              'accent-hover': '#beea78',
+              glow: 'rgba(209, 239, 157, 0.18)',
+              orange: '#ff8959',
+              muted: '#94a3b8',
+              light: '#f1f5f9',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 8s ease-in-out infinite',
+            'glow-spin': 'spin 12s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(1deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root {
-      --background: #111916;
-      --surface: #1b2721;
-      --text: #f4f3e9;
-      --muted: #b2beb4;
-      --accent: #d1ef9d;
-      --orange: #ff8959;
-      --border: #344139;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
-
+    /* Global Styles & Aesthetics */
     body {
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      background-color: #0a120e;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
 
-    a {
-      color: inherit;
+    /* Ambient Lighting Mesh Gradient */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 85% 15%, rgba(209, 239, 157, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 15% 50%, rgba(255, 137, 89, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 85%, rgba(21, 55, 40, 0.3) 0%, transparent 60%);
     }
 
-    a:focus-visible,
-    summary:focus-visible {
-      outline: 3px solid var(--orange);
-      outline-offset: 5px;
+    /* Glassmorphic card styling */
+    .glass-card {
+      background: rgba(21, 34, 27, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(52, 75, 62, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .container {
-      width: min(1100px, 90%);
-      margin: auto;
+    .glass-card:hover {
+      border-color: rgba(209, 239, 157, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(209, 239, 157, 0.05);
     }
 
-    header {
-      border-bottom: 1px solid var(--border);
+    .glass-nav {
+      background: rgba(10, 18, 14, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(52, 75, 62, 0.3);
     }
 
-    nav {
-      min-height: 85px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    /* Gradient Text Header Effect */
+    .text-gradient {
+      background: linear-gradient(135deg, #ffffff 30%, #d1ef9d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .logo {
-      text-decoration: none;
-      font-weight: 900;
-      letter-spacing: 1px;
-      line-height: 1.2;
+    .text-accent-gradient {
+      background: linear-gradient(135deg, #d1ef9d 0%, #a3e635 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .logo span {
-      display: block;
-      margin-top: 5px;
-      color: var(--accent);
-      font-size: 11px;
-      letter-spacing: 3px;
+    /* Accordion Details Animation */
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] summary .faq-icon {
+      transform: rotate(180deg);
+    }
+    details[open] .faq-content {
+      animation: fadeIn 0.3s ease-out forwards;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 14px;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
+    /* Custom Focus State */
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid #ff8959;
+      outline-offset: 4px;
     }
 
-    .nav-links a:hover {
-      color: var(--accent);
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
-
-    .hero {
-      padding: 110px 0 90px;
-      background:
-        radial-gradient(
-          ellipse at 90% 10%,
-          rgba(209, 239, 157, 0.13),
-          transparent 55%
-        );
+    ::-webkit-scrollbar-track {
+      background: #0a120e;
     }
-
-    .badge {
-      display: inline-block;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 8px 15px;
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    ::-webkit-scrollbar-thumb {
+      background: #1e2e25;
+      border-radius: 4px;
     }
-
-    h1 {
-      margin: 25px 0;
-      font-size: clamp(52px, 9vw, 100px);
-      line-height: 1;
-      letter-spacing: -4px;
-    }
-
-    h1 span {
-      display: block;
-      color: var(--accent);
-    }
-
-    .hero p {
-      max-width: 580px;
-      color: var(--muted);
-      font-size: 20px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 32px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 14px 24px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      background: var(--accent);
-      color: var(--background);
-      text-decoration: none;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .button:hover {
-      filter: brightness(1.08);
-    }
-
-    .button.secondary {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    .button[aria-disabled="true"] {
-      background: #38473a;
-      color: #c1ccbd;
-      cursor: default;
-    }
-
-    .small {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    section {
-      padding: 75px 0;
-    }
-
-    .section-label {
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin: 12px 0 20px;
-      font-size: clamp(30px, 5vw, 48px);
-      line-height: 1.15;
-      letter-spacing: -1px;
-    }
-
-    .intro {
-      max-width: 680px;
-      color: var(--muted);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 35px;
-    }
-
-    .card {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--surface);
-    }
-
-    .card-number {
-      color: var(--accent);
-      font-size: 13px;
-    }
-
-    h3 {
-      margin: 25px 0 12px;
-      font-size: 23px;
-    }
-
-    .card p {
-      margin-bottom: 0;
-      color: var(--muted);
-    }
-
-    .download-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-      align-items: center;
-      padding: 45px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: var(--surface);
-    }
-
-    .release-box {
-      padding: 28px;
-      background: var(--background);
-      border-radius: 15px;
-    }
-
-    .release-box h3 {
-      margin-top: 10px;
-    }
-
-    .release-box .button {
-      width: 100%;
-      margin: 15px 0 5px;
-    }
-
-    .status {
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    .steps {
-      padding-left: 22px;
-      color: var(--muted);
-    }
-
-    .steps li {
-      padding: 10px 0;
-    }
-
-    details {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    details p {
-      max-width: 750px;
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    @media (max-width: 700px) {
-      .hero {
-        padding: 70px 0 55px;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .cards,
-      .download-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .download-panel {
-        padding: 25px;
-        gap: 20px;
-      }
-
-      .nav-links {
-        gap: 15px;
-        font-size: 12px;
-      }
-
-      section {
-        padding: 50px 0;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2e4537;
     }
   </style>
 </head>
 
-<body>
-  <header>
-    <nav class="container" aria-label="Main navigation">
-      <a class="logo" href="#">
-        POLY ROOM
-        <span>THE CLEAN SIDE</span>
+<body class="min-h-screen relative selection:bg-brand-accent selection:text-brand-bg">
+
+  <!-- Ambient Light Mesh Background -->
+  <div class="bg-mesh"></div>
+
+  <!-- Sticky Navbar Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <nav class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#" class="group flex flex-col focus:outline-none">
+        <span class="font-display font-black text-xl tracking-wider text-white group-hover:text-brand-accent transition-colors">
+          POLY ROOM
+        </span>
+        <span class="text-[10px] font-bold tracking-[0.25em] text-brand-accent uppercase -mt-1 group-hover:tracking-[0.3em] transition-all">
+          The Clean Side
+        </span>
       </a>
 
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#download">Download</a>
-        <a href="#install">Install</a>
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+        <a href="#about" class="text-slate-300 hover:text-brand-accent transition-colors py-1">About</a>
+        <a href="#download" class="text-slate-300 hover:text-brand-accent transition-colors py-1">Download</a>
+        <a href="#install" class="text-slate-300 hover:text-brand-accent transition-colors py-1">Install Guide</a>
+        <a href="#faq" class="text-slate-300 hover:text-brand-accent transition-colors py-1">FAQ</a>
+        
+        <a href="#download" class="bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-brand-bg font-semibold px-4 py-2 rounded-xl transition-all duration-200 shadow-sm">
+          Get Build ↗
+        </a>
       </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="Toggle Navigation Menu">
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-border bg-brand-bg/95 backdrop-blur-xl px-6 py-6 space-y-4">
+      <a href="#about" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">About</a>
+      <a href="#download" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Download</a>
+      <a href="#install" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Install Guide</a>
+      <a href="#faq" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">FAQ</a>
+      <a href="#download" class="mobile-link inline-block w-full text-center bg-brand-accent text-brand-bg font-bold py-3 rounded-xl mt-2">
+        Get the Game ↗
+      </a>
+    </div>
   </header>
 
-  <main>
-    <div class="hero">
-      <div class="container">
-        <span class="badge">The sequel · In development</span>
+  <main class="relative z-10 pt-20">
 
-        <h1>
-          Poly Room.
-          <span>The Clean Side.</span>
-        </h1>
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6 relative">
+        
+        <!-- Glowing Floating Orbs in Background -->
+        <div class="absolute -top-10 right-10 w-72 h-72 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+        <div class="absolute bottom-0 left-10 w-80 h-80 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <p>
-          Good company. Better spaces.
-          A new chapter built around the moments you didn’t plan.
-        </p>
+        <div class="max-w-3xl space-y-6">
+          <!-- Badge -->
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+            <span class="w-2 h-2 rounded-full bg-brand-accent -ml-4"></span>
+            <span class="text-xs font-semibold tracking-widest text-brand-accent uppercase pl-1">The Sequel · In Active Development</span>
+          </div>
 
-        <div class="buttons">
-          <a class="button" href="#download">
-            Get the game ↗
-          </a>
+          <!-- Headline -->
+          <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] text-white">
+            Poly Room.
+            <span class="block text-accent-gradient mt-1">The Clean Side.</span>
+          </h1>
 
-          <a class="button secondary" href="#about">
-            Explore the sequel ↓
-          </a>
+          <!-- Subtext -->
+          <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl font-normal">
+            Good company. Better spaces. A new chapter in social VR built around the unscripted moments you didn’t plan.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 flex flex-wrap gap-4 items-center">
+            <a href="#download" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-brand-bg bg-brand-accent hover:bg-brand-accent-hover rounded-xl shadow-lg shadow-brand-accent/20 transition-all duration-200 transform hover:-translate-y-0.5">
+              <span>Get the Game</span>
+              <svg class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+
+            <a href="#about" class="inline-flex items-center justify-center px-8 py-4 font-semibold text-slate-200 bg-brand-surface border border-brand-border hover:border-brand-accent/50 hover:text-white rounded-xl transition-all duration-200">
+              <span>Explore Sequel</span>
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Supported Platforms Note -->
+          <div class="pt-6 flex items-center space-x-3 text-xs text-slate-400 font-medium">
+            <span class="inline-block p-1 bg-brand-border/40 rounded">
+              <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              </svg>
+            </span>
+            <span>Planned for Meta Quest 3 & Standard Standalone VR headsets</span>
+          </div>
+
         </div>
-
-        <p class="small">Planned for Meta Quest 3 · Standalone VR</p>
       </div>
-    </div>
+    </section>
 
-    <section id="about" class="container">
-      <div class="section-label">A new chapter</div>
-
-      <h2>A place worth hanging around.</h2>
-
-      <p class="intro">
-        Poly Room: The Clean Side is a separate sequel to Poly Room.
-        The focus is on social spaces, physical interaction, and
-        giving friends more ways to make their own fun.
-      </p>
-
-      <div class="cards">
-        <article class="card">
-          <span class="card-number">01 / THE PEOPLE</span>
-          <h3>Company comes first.</h3>
-          <p>
-            The goal is a place to talk, relax, and spend time
-            together without needing to join a match.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-number">02 / THE SPACES</span>
-          <h3>Make yourself at home.</h3>
-          <p>
-            More inviting environments, warmer lighting,
-            and more detailed spaces are the sequel’s visual direction.
-          </p>
-        </article>
-
-        <article class="card">
-          <span class="card-number">03 / THE MOMENTS</span>
-          <h3>Make your own fun.</h3>
-          <p>
-            Playful objects and hands-on interactions are intended
-            to turn ordinary hangouts into memorable moments.
-          </p>
-        </article>
+    <!-- About Section -->
+    <section id="about" class="py-20 max-w-6xl mx-auto px-6">
+      <div class="mb-12">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">A New Chapter</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2 tracking-tight">
+          A place worth hanging around.
+        </h2>
+        <p class="mt-4 text-slate-300 max-w-2xl text-lg leading-relaxed">
+          Poly Room: The Clean Side is a standalone sequel designed specifically for social intimacy, physical interaction, and empowering players to create their own sandbox fun.
+        </p>
       </div>
 
-      <p class="small">
-        Development goals shown above. Final features will be
-        confirmed in each build’s release notes.
+      <!-- Feature Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Card 1 -->
+        <article class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+          <div class="h-1 w-12 bg-brand-accent rounded-full mb-6 group-hover:w-full transition-all duration-300"></div>
+          <span class="text-xs font-mono text-brand-accent tracking-widest font-semibold">01 / THE PEOPLE</span>
+          <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Company comes first.</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            A lounge-focused experience. Spend real quality time talking, relaxing, and interacting without the high pressure of immediate gameplay loops.
+          </p>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+          <div class="h-1 w-12 bg-brand-accent rounded-full mb-6 group-hover:w-full transition-all duration-300"></div>
+          <span class="text-xs font-mono text-brand-accent tracking-widest font-semibold">02 / THE SPACES</span>
+          <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Make yourself at home.</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Warm ambient lighting, tactile environments, meticulously detailed spaces, and cozy acoustics define the visual atmosphere of this sequel.
+          </p>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+          <div class="h-1 w-12 bg-brand-accent rounded-full mb-6 group-hover:w-full transition-all duration-300"></div>
+          <span class="text-xs font-mono text-brand-accent tracking-widest font-semibold">03 / THE MOMENTS</span>
+          <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Make your own fun.</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Interactive physics props, spatial toys, and intuitive hands-on mechanics turn standard hangouts into unpredictable, memorable moments.
+          </p>
+        </article>
+
+      </div>
+
+      <p class="mt-8 text-xs text-slate-400 italic">
+        * Feature goals shown above. Final release specifications will be documented in each build's official release notes.
       </p>
     </section>
 
-    <section id="download" class="container">
-      <div class="download-panel">
-        <div>
-          <div class="section-label">Download</div>
-          <h2>Meet you on<br>the clean side.</h2>
+    <!-- Download Section -->
+    <section id="download" class="py-20 max-w-6xl mx-auto px-6">
+      <div class="glass-card p-8 sm:p-12 lg:p-14 rounded-3xl border border-brand-border relative overflow-hidden">
+        
+        <!-- Ambient Radial Highlight -->
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
 
-          <p class="intro">
-            Sequel builds will be available through GitHub Releases.
-            Check the release notes for compatibility and installation details.
-          </p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Download Info -->
+          <div class="lg:col-span-7 space-y-4">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">Download Hub</span>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+              Meet you on<br><span class="text-brand-accent">the clean side.</span>
+            </h2>
+            <p class="text-slate-300 text-base leading-relaxed">
+              Sequel builds are published directly through GitHub Releases. Ensure you check release note tags for hardware compatibility and sideloading steps.
+            </p>
 
-          <p class="small">
-            This website provides downloads. The VR game runs on your headset.
-          </p>
-        </div>
+            <div class="pt-2 flex items-center space-x-2 text-xs text-slate-400">
+              <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>This web portal provides APK assets. The game executes natively on headset.</span>
+            </div>
+          </div>
 
-        <div class="release-box">
-          <span class="status" id="release-status">
-            NO PUBLIC BUILD LINKED
-          </span>
+          <!-- Interactive Release Box Widget -->
+          <div class="lg:col-span-5 bg-brand-bg/90 border border-brand-border p-6 sm:p-8 rounded-2xl relative shadow-2xl">
+            
+            <!-- Dev Preview Simulation Toggle Header -->
+            <div class="flex items-center justify-between pb-4 mb-6 border-b border-brand-border/60">
+              <span class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Release Controller</span>
+              <button id="demo-toggle-btn" onclick="toggleBuildState()" class="text-[11px] font-mono bg-brand-border/40 hover:bg-brand-border text-brand-accent px-2.5 py-1 rounded transition-colors" title="Simulate build availability for testing UI">
+                ⚡ Toggle Mock Build
+              </button>
+            </div>
 
-          <h3 id="release-title">Coming soon</h3>
+            <!-- Realtime Status Pill -->
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider mb-4" id="status-pill">
+              <span class="w-2 h-2 rounded-full bg-slate-500" id="status-dot"></span>
+              <span id="release-status" class="text-slate-400 uppercase">NO PUBLIC BUILD LINKED</span>
+            </div>
 
-          <p class="small" id="release-description">
-            A sequel download will appear here when a build is ready.
-          </p>
+            <!-- Dynamic Build Title & Description -->
+            <h3 class="font-display text-2xl font-bold text-white mb-2" id="release-title">
+              Coming soon
+            </h3>
 
-          <a
-            class="button"
-            id="download-button"
-            role="link"
-            aria-disabled="true"
-          >
-            Download not available yet
-          </a>
+            <p class="text-sm text-slate-300 mb-6 leading-relaxed" id="release-description">
+              A public download link will automatically unlock here when a build is released.
+            </p>
 
-          <p class="small" id="release-info">Target: Meta Quest 3</p>
+            <!-- Download Button -->
+            <a 
+              class="w-full inline-flex items-center justify-center px-6 py-4 font-bold rounded-xl text-center transition-all duration-200 bg-slate-800 text-slate-400 cursor-not-allowed" 
+              id="download-button"
+              role="button"
+              aria-disabled="true"
+            >
+              Download not available yet
+            </a>
 
-          <a id="release-notes" hidden>Read release notes ↗</a>
+            <!-- Build Info Footnote -->
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+              <span id="release-info">Target: Meta Quest 3</span>
+              <a id="release-notes" class="text-brand-accent hover:underline hidden font-medium" target="_blank" rel="noopener">
+                Release notes ↗
+              </a>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
       <noscript>
-        <p class="small">
-          Enable JavaScript to load the configured release download.
-        </p>
+        <div class="mt-4 p-4 rounded-xl bg-orange-950/40 border border-orange-500/30 text-orange-200 text-xs text-center">
+          Enable JavaScript in your browser to automatically load configured release metadata.
+        </div>
       </noscript>
     </section>
 
-    <section id="install" class="container">
-      <div class="section-label">Getting started</div>
-      <h2>From download to headset.</h2>
+    <!-- Installation Section -->
+    <section id="install" class="py-20 max-w-6xl mx-auto px-6">
+      <div class="mb-12">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">Getting Started</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2 tracking-tight">
+          From download to headset.
+        </h2>
+      </div>
 
-      <ol class="steps">
-        <li>Download the sequel APK when a release becomes available.</li>
-        <li>
-          Follow that release’s instructions to install the APK
-          using a compatible Quest sideloading tool.
-        </li>
-        <li>Launch the installed game on your headset.</li>
-      </ol>
-    </section>
+      <!-- Connected Step Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+        
+        <!-- Step 1 -->
+        <div class="glass-card p-8 rounded-2xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-accent/10 border border-brand-accent/30 text-brand-accent font-mono font-bold flex items-center justify-center text-lg mb-6">
+              01
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-2">Fetch Build</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Download the official sequel <code class="text-brand-accent text-xs font-mono bg-brand-bg px-1.5 py-0.5 rounded">.APK</code> file when releases become active on GitHub.
+            </p>
+          </div>
+          <div class="mt-6 text-xs text-slate-400 font-mono">Format: Android Application Package</div>
+        </div>
 
-    <section class="container" aria-label="Frequently asked questions">
-      <div class="section-label">A few things to know</div>
-      <h2>Before you jump in.</h2>
-
-      <details>
-        <summary>Is this the original Poly Room?</summary>
-        <p>
-          No. Poly Room: The Clean Side is a separate sequel.
-          Downloads on this page should be builds of the sequel.
-        </p>
-      </details>
-
-      <details>
-        <summary>Does the sequel have worldwide multiplayer?</summary>
-        <p>
-          Networking support has not been confirmed for a public sequel
-          release. Check the release notes for supported connections
-          and player counts.
-        </p>
-      </details>
-
-      <details>
-        <summary>Where are the gameplay screenshots?</summary>
-        <p>
-          Verified screenshots of the sequel will be added during
-          development.
-        </p>
-      </details>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <span>POLY ROOM: THE CLEAN SIDE</span>
-      <span>
-        Independent project. Not affiliated with Rec Room or Meta.
-      </span>
-    </div>
-  </footer>
-
-  <script>
-    /*
-      EDIT THIS SECTION WHEN YOUR SEQUEL APK IS READY.
-
-      Example APK link:
-      https://github.com/YOUR-USERNAME/YOUR-REPO/releases/download/v0.1/PolyRoom-TheCleanSide.apk
-
-      Example release notes link:
-      https://github.com/YOUR-USERNAME/YOUR-REPO/releases/tag/v0.1
-
-      Leave apkUrl blank until the real file is uploaded.
-    */
-
-    const release = {
-      apkUrl: "",
-      notesUrl: "",
-      version: "",
-      fileSize: ""
-    };
-
-    function validGitHubUrl(value) {
-      try {
-        const url = new URL(value);
-
-        if (
-          url.protocol === "https:" &&
-          url.hostname === "github.com" &&
-          !url.username &&
-          !url.password
-        ) {
-          return url.href;
-        }
-      } catch {
-        return null;
-      }
-
-      return null;
-    }
-
-    const apkUrl = validGitHubUrl(release.apkUrl);
-    const notesUrl = validGitHubUrl(release.notesUrl);
-
-    if (apkUrl) {
-      const button = document.getElementById("download-button");
-
-      button.href = apkUrl;
-      button.removeAttribute("aria-disabled");
-      button.textContent = "Download Quest APK ↗";
-
-      document.getElementById("release-status").textContent =
-        "BUILD AVAILABLE";
-
-      document.getElementById("release-title").textContent =
-        release.version || "Sequel build";
-
-      document.getElementById("release-description").textContent =
-        "Download Poly Room: The Clean Side from GitHub Releases.";
-
-      document.getElementById("release-info").textContent =
-        ["Meta Quest 3", release.fileSize].filter(Boolean).join(" · ");
-    }
-
-    if (notesUrl) {
-      const link = document.getElementById("release-notes");
-      link.href = notesUrl;
-      link.hidden = false;
-    }
-  </script>
-</body>
-</html>
+      
