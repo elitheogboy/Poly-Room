@@ -91,9 +91,15 @@
         <a href="#install" class="hover:text-accent transition-colors">Install</a>
       </nav>
 
-      <a href="#download" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-accent text-bgDark font-bold text-xs tracking-wider uppercase hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(209,239,157,0.2)]">
-        Get APK
-      </a>
+      <div class="flex items-center gap-3">
+        <a id="nav-owner-badge" href="#owner-portal" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface border border-borderClr text-xs text-accent font-mono font-bold">
+          <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+          Owner Session
+        </a>
+        <a href="#download" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-accent text-bgDark font-bold text-xs tracking-wider uppercase hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(209,239,157,0.2)]">
+          Get APK
+        </a>
+      </div>
     </div>
   </header>
 
@@ -246,40 +252,94 @@
         </div>
       </div>
     </section>
-        <!-- Download Section -->
+
+    <!-- Download & Private Owner Section -->
     <section id="download" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 sm:p-12 rounded-3xl border border-[#23352b] bg-[#131c17] relative">
         <div>
-          <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Download</span>
+          <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Private Owner Downloads</span>
           <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-4">Meet you on<br>the clean side.</h2>
           <p class="text-muted text-base mb-6">
-            Sequel builds will be available through GitHub Releases or direct mirrors. Check installation details below.
+            Sequel builds and alpha test APKs are restricted exclusively to the project owner (<span class="text-accent font-mono">elitheogboy@gmail.com</span>).
           </p>
-          <p class="text-muted text-xs">This website provides downloads. The VR game runs on your headset.</p>
+          <p class="text-muted text-xs">This website provides downloads. The VR game runs on your Meta Quest headset.</p>
         </div>
 
-        <div class="p-8 rounded-2xl bg-[#090d0b] border border-[#23352b] flex flex-col justify-between">
-          <div>
-            <span id="release-status" class="text-accent text-xs font-mono font-bold tracking-widest uppercase">NO PUBLIC BUILD LINKED</span>
-            <h3 id="release-title" class="font-heading font-bold text-2xl text-white mt-2 mb-2">Coming soon</h3>
-            <p id="release-description" class="text-muted text-xs sm:text-sm mb-6">A sequel download will appear here when a build is ready.</p>
+        <div class="p-8 rounded-2xl bg-[#090d0b] border border-[#23352b] flex flex-col justify-between relative overflow-hidden min-h-[280px]">
+          
+          <!-- Locked State Message (Shown when not logged in as owner) -->
+          <div id="download-locked-view" class="flex flex-col justify-between h-full">
+            <div>
+              <span class="text-orangeNeon text-xs font-mono font-bold tracking-widest uppercase">OWNER ACCESS REQUIRED</span>
+              <h3 class="font-heading font-bold text-2xl text-white mt-2 mb-2">Alpha Downloads Locked</h3>
+              <p class="text-muted text-xs sm:text-sm mb-6">You must log in as <code class="text-accent">elitheogboy@gmail.com</code> to unlock download mirrors.</p>
+            </div>
+            <a href="#owner-portal" onclick="document.getElementById('owner-email-input').focus();" class="w-full inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#1c2c24] border border-accent/30 text-accent font-bold text-sm tracking-wide hover:bg-accent hover:text-bgDark transition-all shadow-lg">
+              Owner Sign-In Below 🔐
+            </a>
           </div>
 
-          <div>
-            <div class="flex flex-col sm:flex-row gap-3 mb-4">
-              <a id="download-button" class="flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#23352b] text-[#9ba8a0] font-bold text-sm tracking-wide cursor-default transition-all" role="link" aria-disabled="true">
-                Download not available yet
-              </a>
-              <a id="secondary-download-button" class="hidden flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#1c2c24] border border-[#23352b] text-accent hover:border-accent/40 font-bold text-sm tracking-wide transition-all" href="#" target="_blank" rel="noopener noreferrer">
-                Alternative Link ↗
-              </a>
+          <!-- Unlocked State View (Shown only to authenticated owner) -->
+          <div id="download-unlocked-view" class="hidden flex-col justify-between h-full">
+            <div>
+              <span id="release-status" class="text-accent text-xs font-mono font-bold tracking-widest uppercase">BUILD AVAILABLE · OWNER ACCESS</span>
+              <h3 id="release-title" class="font-heading font-bold text-2xl text-white mt-2 mb-2">Alpha Build</h3>
+              <p id="release-description" class="text-muted text-xs sm:text-sm mb-6">Verified owner (<span class="text-accent">elitheogboy@gmail.com</span>). Direct mirrors ready below.</p>
             </div>
-            <div class="flex items-center justify-between text-xs text-muted">
-              <span id="release-info">Target: Meta Quest 3</span>
-              <a id="release-notes" class="text-accent hover:underline" hidden>Read release notes ↗</a>
+
+            <div>
+              <div class="flex flex-col sm:flex-row gap-3 mb-4">
+                <a id="download-button" class="flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-accent text-bgDark font-bold text-sm tracking-wide hover:bg-accentHover transition-all shadow-[0_0_25px_rgba(209,239,157,0.3)]" href="#" target="_blank">
+                  GitHub APK ↗
+                </a>
+                <a id="secondary-download-button" class="flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#1c2c24] border border-[#23352b] text-accent hover:border-accent/40 font-bold text-sm tracking-wide transition-all" href="https://gofile.io/d/13IYvTw1" target="_blank" rel="noopener noreferrer">
+                  Original Game ↗
+                </a>
+              </div>
+              <div class="flex items-center justify-between text-xs text-muted">
+                <span id="release-info">Target: Meta Quest 3 · Standalone APK</span>
+              </div>
             </div>
           </div>
+
         </div>
+      </div>
+    </section>
+
+    <!-- Owner Login Form Portal -->
+    <section id="owner-portal" class="max-w-4xl mx-auto px-6 py-12 border-t border-[#23352b]">
+      <div class="p-8 sm:p-10 rounded-3xl border border-[#23352b] bg-[#131c17] shadow-2xl relative">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6">
+          <div>
+            <span class="text-accent text-xs font-mono font-bold tracking-widest uppercase">AUTHENTICATION</span>
+            <h2 class="font-heading font-bold text-2xl sm:text-3xl text-white mt-1">Owner Admin Gate</h2>
+            <p class="text-muted text-xs sm:text-sm mt-1">Private control panel for <code class="text-accent">elitheogboy@gmail.com</code></p>
+          </div>
+          <div id="login-status-badge" class="px-4 py-1.5 rounded-full bg-red-900/30 border border-red-500/30 text-red-400 text-xs font-mono">
+            Status: Logged Out
+          </div>
+        </div>
+
+        <form id="owner-login-form" class="space-y-4 max-w-md">
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1.5">Owner Email Address</label>
+            <input type="email" id="owner-email-input" required placeholder="elitheogboy@gmail.com" class="w-full px-4 py-3 rounded-xl bg-[#090d0b] border border-[#23352b] text-white text-sm focus:outline-none focus:border-accent transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1.5">Owner Passcode</label>
+            <input type="password" id="owner-passcode-input" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-[#090d0b] border border-[#23352b] text-white text-sm focus:outline-none focus:border-accent transition-colors">
+          </div>
+          <div class="flex items-center gap-3 pt-2">
+            <button type="submit" class="px-6 py-3 rounded-xl bg-accent text-bgDark font-bold text-xs tracking-wider uppercase hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(209,239,157,0.2)]">
+              Sign In as Owner 🔑
+            </button>
+            <button type="button" id="logout-button" class="hidden px-4 py-3 rounded-xl bg-red-950/40 border border-red-800/40 text-red-300 font-bold text-xs hover:bg-red-900/60 transition-all">
+              Sign Out
+            </button>
+          </div>
+        </form>
+
+        <p id="owner-auth-feedback" class="text-xs font-mono mt-4 min-h-[20px]"></p>
       </div>
     </section>
 
@@ -291,15 +351,15 @@
       <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 text-muted list-none p-0">
         <li class="p-6 rounded-2xl border border-[#23352b] bg-[#131c17] flex flex-col gap-3">
           <span class="text-accent font-mono text-xl font-bold">01</span>
-          <p class="text-sm">Download the sequel APK when a release becomes available.</p>
+          <p class="text-sm">Download the sequel APK when logged into the owner portal.</p>
         </li>
         <li class="p-6 rounded-2xl border border-[#23352b] bg-[#131c17] flex flex-col gap-3">
           <span class="text-accent font-mono text-xl font-bold">02</span>
-          <p class="text-sm">Follow that release’s instructions to install the APK using a compatible Quest sideloading tool.</p>
+          <p class="text-sm">Follow that release’s instructions to install the APK using SideQuest or Quest sideloading tool.</p>
         </li>
         <li class="p-6 rounded-2xl border border-[#23352b] bg-[#131c17] flex flex-col gap-3">
           <span class="text-accent font-mono text-xl font-bold">03</span>
-          <p class="text-sm">Launch the installed game on your headset and join your friends.</p>
+          <p class="text-sm">Launch the installed game on your headset and test new features.</p>
         </li>
       </ol>
     </section>
@@ -315,7 +375,7 @@
             Is this the original Poly Room?
             <span class="text-accent transition-transform group-open:rotate-180">↓</span>
           </summary>
-          <p class="text-muted text-sm mt-4 leading-relaxed">No. Poly Room: The Clean Side is a separate sequel. Downloads on this page should be builds of the sequel.</p>
+          <p class="text-muted text-sm mt-4 leading-relaxed">No. Poly Room: The Clean Side is a separate sequel. Downloads on this page are private alpha test builds.</p>
         </details>
 
         <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
@@ -323,16 +383,16 @@
             Does the sequel have worldwide multiplayer?
             <span class="text-accent transition-transform group-open:rotate-180">↓</span>
           </summary>
-          <p class="text-muted text-sm mt-4 leading-relaxed">Networking support has not been confirmed for a public sequel release. Check the release notes for supported connections and player counts.</p>
+          <p class="text-muted text-sm mt-4 leading-relaxed">Networking support has not been confirmed for a public sequel release. Check release notes for active networking details.</p>
         </details>
         
-      <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
+        <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
           <summary class="font-heading font-bold text-lg text-white flex justify-between items-center list-none">
             Will the sequel cost money?
             <span class="text-accent transition-transform group-open:rotate-180">↓</span>
           </summary>
-          <p class="text-muted text-sm mt-4 leading-relaxed">Maybe, The original Poly Room is staying free but the price of The Clean Side Hasn't been decided.</p>
-      </details>
+          <p class="text-muted text-sm mt-4 leading-relaxed">Maybe. The original Poly Room is staying free, but pricing for The Clean Side hasn't been finalized.</p>
+        </details>
 
         <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
           <summary class="font-heading font-bold text-lg text-white flex justify-between items-center list-none">
@@ -372,59 +432,83 @@
       }
     });
 
-    // Release APK URL Configuration
-    const release = {
-      apkUrl: "", // Put primary GitHub URL here when ready
-      secondaryUrl: "https://gofile.io/d/13IYvTw1", // Gofile link
-      secondaryLabel: "Original Game ↗",
-      notesUrl: "",
-      version: "Alpha Build",
-      fileSize: "Standalone APK"
-    };
+    // Owner Auth State & Portal Management
+    const OWNER_EMAIL = "elitheogboy@gmail.com";
+    const DEFAULT_PASSCODE = "polyroom2026"; // Default owner passcode
 
-    function validateUrl(value) {
-      try {
-        const url = new URL(value);
-        if (url.protocol === "https:" || url.protocol === "http:") {
-          return url.href;
-        }
-      } catch {
-        return null;
+    const loginForm = document.getElementById("owner-login-form");
+    const emailInput = document.getElementById("owner-email-input");
+    const passInput = document.getElementById("owner-passcode-input");
+    const feedback = document.getElementById("owner-auth-feedback");
+    const statusBadge = document.getElementById("login-status-badge");
+    const logoutBtn = document.getElementById("logout-button");
+    const lockedView = document.getElementById("download-locked-view");
+    const unlockedView = document.getElementById("download-unlocked-view");
+    const navBadge = document.getElementById("nav-owner-badge");
+
+    function checkAuthState() {
+      const isOwnerLoggedIn = localStorage.getItem("polyroom_owner_session") === "true";
+      const activeEmail = localStorage.getItem("polyroom_owner_email");
+
+      if (isOwnerLoggedIn && activeEmail === OWNER_EMAIL) {
+        // Show Unlocked UI
+        lockedView.classList.add("hidden");
+        unlockedView.classList.remove("hidden");
+        unlockedView.classList.add("flex");
+
+        statusBadge.textContent = "Status: Authenticated Owner";
+        statusBadge.className = "px-4 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-xs font-mono";
+        logoutBtn.classList.remove("hidden");
+        navBadge.classList.remove("hidden");
+        feedback.textContent = "✓ Logged in as owner. Download links are active above.";
+        feedback.className = "text-xs font-mono mt-4 text-accent";
+      } else {
+        // Show Locked UI
+        lockedView.classList.remove("hidden");
+        unlockedView.classList.add("hidden");
+        unlockedView.classList.remove("flex");
+
+        statusBadge.textContent = "Status: Logged Out";
+        statusBadge.className = "px-4 py-1.5 rounded-full bg-red-900/30 border border-red-500/30 text-red-400 text-xs font-mono";
+        logoutBtn.classList.add("hidden");
+        navBadge.classList.add("hidden");
       }
-      return null;
     }
 
-    const apkUrl = validateUrl(release.apkUrl);
-    const secondaryUrl = validateUrl(release.secondaryUrl);
-    const notesUrl = validateUrl(release.notesUrl);
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const enteredEmail = emailInput.value.trim().toLowerCase();
+      const enteredPass = passInput.value.trim();
 
-    if (apkUrl || secondaryUrl) {
-      document.getElementById("release-status").textContent = "BUILD AVAILABLE";
-      document.getElementById("release-title").textContent = release.version || "Sequel build";
-      document.getElementById("release-description").textContent = "Download Poly Room: The Clean Side using the links below.";
-      document.getElementById("release-info").textContent = ["Meta Quest 3", release.fileSize].filter(Boolean).join(" · ");
-    }
+      if (enteredEmail !== OWNER_EMAIL) {
+        feedback.textContent = "❌ Access Denied: Email address is not authorized for owner portal.";
+        feedback.className = "text-xs font-mono mt-4 text-red-400";
+        return;
+      }
 
-    if (apkUrl) {
-      const button = document.getElementById("download-button");
-      button.href = apkUrl;
-      button.removeAttribute("aria-disabled");
-      button.className = "flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-accent text-bgDark font-bold text-sm tracking-wide hover:bg-accentHover transition-all shadow-[0_0_25px_rgba(209,239,157,0.3)]";
-      button.textContent = "GitHub APK ↗";
-    }
+      if (enteredPass !== DEFAULT_PASSCODE) {
+        feedback.textContent = "❌ Incorrect Passcode. Please try again.";
+        feedback.className = "text-xs font-mono mt-4 text-red-400";
+        return;
+      }
 
-    if (secondaryUrl) {
-      const secondaryBtn = document.getElementById("secondary-download-button");
-      secondaryBtn.href = secondaryUrl;
-      secondaryBtn.textContent = release.secondaryLabel || "Gofile Link ↗";
-      secondaryBtn.classList.remove("hidden");
-    }
+      // Successful Login
+      localStorage.setItem("polyroom_owner_session", "true");
+      localStorage.setItem("polyroom_owner_email", OWNER_EMAIL);
+      passInput.value = "";
+      checkAuthState();
+    });
 
-    if (notesUrl) {
-      const link = document.getElementById("release-notes");
-      link.href = notesUrl;
-      link.hidden = false;
-    }
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("polyroom_owner_session");
+      localStorage.removeItem("polyroom_owner_email");
+      feedback.textContent = "Signed out successfully.";
+      feedback.className = "text-xs font-mono mt-4 text-muted";
+      checkAuthState();
+    });
+
+    // Run auth check on load
+    checkAuthState();
   </script>
 </body>
 </html>
