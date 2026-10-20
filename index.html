@@ -1,64 +1,27 @@
-```html
-      <!-- Mobile Dropdown Menu -->
-      <div id="mobile-menu" class="hidden md:hidden border-b border-brand-border bg-brand-bg/95 backdrop-blur-xl px-6 py-6 space-y-4">
-        <a href="#about" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">About</a>
-        <a href="#gallery" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Sneak Peek</a>
-        <a href="#download" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Download</a>
-        <a href="#install" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Install Guide</a>
-        <a href="#faq" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">FAQ</a>
-        <a href="#download" class="mobile-link inline-block w-full text-center bg-brand-accent text-brand-bg font-bold py-3 rounded-xl mt-2">
-          Get the Game ↗
-        </a>
-      </div>
-    </header>
-
-<html lang="en" class="dark">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a120e">
-  <meta name="description" content="Poly Room: The Clean Side — A new chapter in social VR.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d0b">
+  <meta name="description" content="Poly Room: The Clean Side — a new chapter in social VR.">
   <title>Poly Room: The Clean Side</title>
-
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            brand: {
-              bg: '#0a120e',
-              surface: 'rgba(21, 34, 27, 0.65)',
-              border: 'rgba(52, 75, 62, 0.5)',
-              accent: '#d1ef9d',
-              'accent-hover': '#beea78',
-              glow: 'rgba(209, 239, 157, 0.18)',
-              orange: '#ff8959',
-              muted: '#94a3b8',
-              light: '#f1f5f9',
-            }
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif'],
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 8s ease-in-out infinite',
-            'glow-spin': 'spin 12s linear infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-15px) rotate(1deg)' },
-            }
+            bgDark: '#090d0b',
+            surface: '#131c17',
+            surfaceHover: '#18251e',
+            borderClr: '#23352b',
+            accent: '#d1ef9d',
+            accentHover: '#bce27a',
+            orangeNeon: '#ff8959',
+            muted: '#9ba8a0'
           }
         }
       }
@@ -66,330 +29,399 @@
   </script>
 
   <style>
-    /* Global Styles & Aesthetics */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+
     body {
-      background-color: #0a120e;
-      color: #f1f5f9;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      background-color: #090d0b;
+      color: #f4f3e9;
     }
 
-    /* Ambient Lighting Mesh Gradient */
-    .bg-mesh {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background: 
-        radial-gradient(circle at 85% 15%, rgba(209, 239, 157, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 15% 50%, rgba(255, 137, 89, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 85%, rgba(21, 55, 40, 0.3) 0%, transparent 60%);
-    }
-
-    /* Glassmorphic card styling */
-    .glass-card {
-      background: rgba(21, 34, 27, 0.6);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(52, 75, 62, 0.4);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .glass-card:hover {
-      border-color: rgba(209, 239, 157, 0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(209, 239, 157, 0.05);
-    }
-
-    .glass-nav {
-      background: rgba(10, 18, 14, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(52, 75, 62, 0.3);
-    }
-
-    /* Gradient Text Header Effect */
-    .text-gradient {
-      background: linear-gradient(135deg, #ffffff 30%, #d1ef9d 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .text-accent-gradient {
-      background: linear-gradient(135deg, #d1ef9d 0%, #a3e635 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Accordion Details Animation */
-    details summary::-webkit-details-marker {
-      display: none;
-    }
-    details[open] summary .faq-icon {
-      transform: rotate(180deg);
-    }
-    details[open] .faq-content {
-      animation: fadeIn 0.3s ease-out forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Custom Focus State */
-    a:focus-visible, button:focus-visible, summary:focus-visible {
-      outline: 2px solid #ff8959;
-      outline-offset: 4px;
+    h1, h2, h3, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 10px;
     }
     ::-webkit-scrollbar-track {
-      background: #0a120e;
+      background: #090d0b;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1e2e25;
-      border-radius: 4px;
+      background: #23352b;
+      border-radius: 5px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #2e4537;
+      background: #344d3f;
+    }
+
+    /* Spoiler Image Hover & Blur States */
+    .spoiler-card.is-revealed .spoiler-overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .spoiler-card.is-revealed .spoiler-img {
+      filter: none;
+    }
+    .spoiler-card.is-revealed .spoiler-rehide-btn {
+      display: flex !important;
     }
   </style>
 </head>
+<body class="bg-[#090d0b] text-[#f4f3e9] antialiased selection:bg-accent selection:text-bgDark overflow-x-hidden">
 
-<body class="min-h-screen relative selection:bg-brand-accent selection:text-brand-bg">
+  <!-- Ambient Glow Background Effects -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none z-0 overflow-hidden opacity-40">
+    <div class="absolute top-[-10%] left-[10%] w-[500px] h-[500px] rounded-full bg-accent/10 blur-[140px] animate-pulse"></div>
+    <div class="absolute top-[20%] right-[5%] w-[450px] h-[450px] rounded-full bg-orangeNeon/10 blur-[150px]"></div>
+  </div>
 
-  <!-- Ambient Light Mesh Background -->
-  <div class="bg-mesh"></div>
-
-  <!-- Sticky Navbar Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
-    <nav class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between" aria-label="Main navigation">
-      <!-- Logo -->
-      <a href="#" class="group flex flex-col focus:outline-none">
-        <span class="font-display font-black text-xl tracking-wider text-white group-hover:text-brand-accent transition-colors">
-          POLY ROOM
-        </span>
-        <span class="text-[10px] font-bold tracking-[0.25em] text-brand-accent uppercase -mt-1 group-hover:tracking-[0.3em] transition-all">
-          The Clean Side
-        </span>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#090d0b]/80 border-b border-[#23352b]">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a class="font-heading font-extrabold text-xl tracking-wider text-white flex flex-col group" href="#">
+        POLY ROOM
+        <span class="text-accent text-[10px] tracking-[0.25em] font-sans font-semibold group-hover:text-orangeNeon transition-colors">THE CLEAN SIDE</span>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
-        <a href="#about" class="text-slate-300 hover:text-brand-accent transition-colors py-1">About</a>
-        <a href="#gallery" class="text-slate-300 hover:text-brand-accent transition-colors py-1">Sneak Peek</a>
-        <a href="#download" class="text-slate-300 hover:text-brand-accent transition-colors py-1">Download</a>
-        <a href="#install" class="text-slate-300 hover:text-brand-accent transition-colors py-1">Install Guide</a>
-        <a href="#faq" class="text-slate-300 hover:text-brand-accent transition-colors py-1">FAQ</a>
-        
-        <a href="#download" class="bg-brand-accent/10 border border-brand-accent/30 text-brand-accent hover:bg-brand-accent hover:text-brand-bg font-semibold px-4 py-2 rounded-xl transition-all duration-200 shadow-sm">
-          Get Build ↗
-        </a>
-      </div>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+        <a href="#about" class="hover:text-accent transition-colors">About</a>
+        <a href="#gallery" class="hover:text-accent transition-colors">Sneak Peek</a>
+        <a href="#download" class="hover:text-accent transition-colors">Download</a>
+        <a href="#install" class="hover:text-accent transition-colors">Install</a>
+      </nav>
 
-      <!-- Mobile Hamburger Button -->
-      <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="Toggle Navigation Menu">
-        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    </nav>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-border bg-brand-bg/95 backdrop-blur-xl px-6 py-6 space-y-4">
-      <a href="#about" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">About</a>
-      <a href="#download" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Download</a>
-      <a href="#install" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">Install Guide</a>
-      <a href="#faq" class="mobile-link block text-lg text-slate-300 hover:text-brand-accent font-medium">FAQ</a>
-      <a href="#download" class="mobile-link inline-block w-full text-center bg-brand-accent text-brand-bg font-bold py-3 rounded-xl mt-2">
-        Get the Game ↗
+      <a href="#download" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-accent text-bgDark font-bold text-xs tracking-wider uppercase hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(209,239,157,0.2)]">
+        Get APK
       </a>
     </div>
   </header>
 
-  <main class="relative z-10 pt-20">
-
+  <main class="relative z-10">
     <!-- Hero Section -->
-    <section class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden">
-      <div class="max-w-6xl mx-auto px-6 relative">
-        
-        <!-- Glowing Floating Orbs in Background -->
-        <div class="absolute -top-10 right-10 w-72 h-72 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
-        <div class="absolute bottom-0 left-10 w-80 h-80 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+    <section class="relative pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="inline-flex items-center gap-2 border border-[#23352b] rounded-full px-4 py-1.5 bg-[#131c17]/60 backdrop-blur-md mb-8">
+          <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+          <span class="text-accent text-xs font-semibold tracking-widest uppercase">The sequel · In development</span>
+        </div>
 
-        <div class="max-w-3xl space-y-6">
-          <!-- Badge -->
-          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-md">
-            <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
-            <span class="w-2 h-2 rounded-full bg-brand-accent -ml-4"></span>
-            <span class="text-xs font-semibold tracking-widest text-brand-accent uppercase pl-1">The Sequel · In Active Development</span>
+        <h1 class="font-heading font-bold text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-8">
+          Poly Room.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent via-[#e2ffb0] to-orangeNeon">The Clean Side.</span>
+        </h1>
+
+        <p class="max-w-xl text-muted text-lg sm:text-xl font-normal leading-relaxed mb-10">
+          Good company. Better spaces. A new chapter built around the moments you didn’t plan.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <a class="inline-flex items-center justify-center px-7 py-4 rounded-2xl bg-accent text-bgDark font-bold text-sm tracking-wide hover:bg-accentHover transition-all shadow-[0_0_30px_rgba(209,239,157,0.3)] hover:scale-[1.02]" href="#download">
+            Get the game ↗
+          </a>
+          <a class="inline-flex items-center justify-center px-7 py-4 rounded-2xl bg-[#131c17] border border-[#23352b] text-white font-bold text-sm tracking-wide hover:bg-[#1c2c24] hover:border-accent/40 transition-all" href="#about">
+            Explore the sequel ↓
+          </a>
+        </div>
+
+        <p class="text-muted text-xs tracking-wide flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Planned for Meta Quest 3 · Standalone VR
+        </p>
+      </div>
+    </section>
+        <!-- Sneak Peek Gallery Section (Discord Spoilers) -->
+    <section id="gallery" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Sneak Peek</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2">Early development snapshots.</h2>
+        </div>
+        <p class="text-muted text-sm max-w-md">
+          Images from current test builds. Click any preview card to uncover the spoiler overlay, just like Discord.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Spoiler Card 1 -->
+        <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl">
+          <!-- Re-hide button (appears when revealed) -->
+          <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
+            Hide
+          </button>
+
+          <!-- Spoiler Blur Overlay -->
+          <div class="spoiler-overlay absolute inset-0 bg-black/85 backdrop-blur-2xl z-10 flex flex-col items-center justify-center p-6 text-center transition-all duration-300 group-hover:bg-black/80">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/10 text-white font-bold text-xs tracking-widest uppercase mb-3 shadow-2xl">
+              <svg class="w-4 h-4 text-orangeNeon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              SPOILER
+            </div>
+            <p class="text-xs text-muted">Click to reveal screenshot</p>
           </div>
 
-          <!-- Headline -->
-          <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] text-white">
-            Poly Room.
-            <span class="block text-accent-gradient mt-1">The Clean Side.</span>
-          </h1>
+          <!-- Image -->
+          <div class="aspect-video w-full overflow-hidden bg-black relative">
+            <svg class="spoiler-img w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="450" fill="#2a1f18"/>
+              <path d="M0 350 L800 350 L800 450 L0 450 Z" fill="#d2905e"/>
+              <circle cx="400" cy="220" r="90" fill="#a4cbe6"/>
+              <rect x="350" y="160" width="100" height="120" rx="20" fill="#e2e8f0"/>
+              <circle cx="200" cy="180" r="45" fill="#f6e05e"/>
+            </svg>
+          </div>
+          <div class="p-4 bg-[#131c17] relative z-0">
+            <span class="text-accent text-[11px] font-bold tracking-widest uppercase">Environment Test 01</span>
+            <h3 class="font-heading font-bold text-lg text-white mt-1">First-person hand shadows & floor details</h3>
+          </div>
+        </div>
 
-          <!-- Subtext -->
-          <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl font-normal">
-            Good company. Better spaces. A new chapter in social VR built around the unscripted moments you didn’t plan.
-          </p>
+        <!-- Spoiler Card 2 -->
+        <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl">
+          <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
+            Hide
+          </button>
 
-          <!-- Action Buttons -->
-          <div class="pt-4 flex flex-wrap gap-4 items-center">
-            <a href="#download" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-brand-bg bg-brand-accent hover:bg-brand-accent-hover rounded-xl shadow-lg shadow-brand-accent/20 transition-all duration-200 transform hover:-translate-y-0.5">
-              <span>Get the Game</span>
-              <svg class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </a>
-
-            <a href="#about" class="inline-flex items-center justify-center px-8 py-4 font-semibold text-slate-200 bg-brand-surface border border-brand-border hover:border-brand-accent/50 hover:text-white rounded-xl transition-all duration-200">
-              <span>Explore Sequel</span>
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </a>
+          <div class="spoiler-overlay absolute inset-0 bg-black/85 backdrop-blur-2xl z-10 flex flex-col items-center justify-center p-6 text-center transition-all duration-300 group-hover:bg-black/80">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/10 text-white font-bold text-xs tracking-widest uppercase mb-3 shadow-2xl">
+              <svg class="w-4 h-4 text-orangeNeon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              SPOILER
+            </div>
+            <p class="text-xs text-muted">Click to reveal screenshot</p>
           </div>
 
-          <!-- Supported Platforms Note -->
-          <div class="pt-6 flex items-center space-x-3 text-xs text-slate-400 font-medium">
-            <span class="inline-block p-1 bg-brand-border/40 rounded">
-              <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-              </svg>
-            </span>
-            <span>Planned for Meta Quest 3 & Standard Standalone VR headsets</span>
+          <div class="aspect-video w-full overflow-hidden bg-black relative">
+            <svg class="spoiler-img w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="450" fill="#2d3748"/>
+              <path d="M0 320 L800 320 L800 450 L0 450 Z" fill="#b7791f"/>
+              <circle cx="450" cy="240" r="110" fill="#d6bcfa"/>
+              <rect x="250" y="120" width="160" height="200" rx="15" fill="#e2e8f0"/>
+            </svg>
+          </div>
+          <div class="p-4 bg-[#131c17] relative z-0">
+            <span class="text-accent text-[11px] font-bold tracking-widest uppercase">Interaction Test 02</span>
+            <h3 class="font-heading font-bold text-lg text-white mt-1">Prop handling & tabletop glassware</h3>
+          </div>
+        </div>
+
+        <!-- Spoiler Card 3 -->
+        <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl">
+          <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
+            Hide
+          </button>
+
+          <div class="spoiler-overlay absolute inset-0 bg-black/85 backdrop-blur-2xl z-10 flex flex-col items-center justify-center p-6 text-center transition-all duration-300 group-hover:bg-black/80">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/10 text-white font-bold text-xs tracking-widest uppercase mb-3 shadow-2xl">
+              <svg class="w-4 h-4 text-orangeNeon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              SPOILER
+            </div>
+            <p class="text-xs text-muted">Click to reveal screenshot</p>
           </div>
 
+          <div class="aspect-video w-full overflow-hidden bg-black relative">
+            <svg class="spoiler-img w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+              <rect width="800" height="450" fill="#a0aec0"/>
+              <path d="M0 280 L800 280 L800 450 L0 450 Z" fill="#cbd5e0"/>
+              <rect x="150" y="200" width="500" height="80" rx="40" fill="#f7fafc"/>
+              <circle cx="400" cy="240" r="30" fill="#3182ce"/>
+            </svg>
+          </div>
+          <div class="p-4 bg-[#131c17] relative z-0">
+            <span class="text-accent text-[11px] font-bold tracking-widest uppercase">Outdoor Space 03</span>
+            <h3 class="font-heading font-bold text-lg text-white mt-1">Rooftop fountain terrace layout</h3>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 max-w-6xl mx-auto px-6">
-      <div class="mb-12">
-        <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">A New Chapter</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2 tracking-tight">
-          A place worth hanging around.
-        </h2>
-        <p class="mt-4 text-slate-300 max-w-2xl text-lg leading-relaxed">
-          Poly Room: The Clean Side is a standalone sequel designed specifically for social intimacy, physical interaction, and empowering players to create their own sandbox fun.
-        </p>
-      </div>
-
-      <!-- Feature Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Card 1 -->
-        <article class="glass-card p-8 rounded-2xl relative overflow-hidden group">
-          <div class="h-1 w-12 bg-brand-accent rounded-full mb-6 group-hover:w-full transition-all duration-300"></div>
-          <span class="text-xs font-mono text-brand-accent tracking-widest font-semibold">01 / THE PEOPLE</span>
-          <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Company comes first.</h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            A lounge-focused experience. Spend real quality time talking, relaxing, and interacting without the high pressure of immediate gameplay loops.
-          </p>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="glass-card p-8 rounded-2xl relative overflow-hidden group">
-          <div class="h-1 w-12 bg-brand-accent rounded-full mb-6 group-hover:w-full transition-all duration-300"></div>
-          <span class="text-xs font-mono text-brand-accent tracking-widest font-semibold">02 / THE SPACES</span>
-          <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Make yourself at home.</h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Warm ambient lighting, tactile environments, meticulously detailed spaces, and cozy acoustics define the visual atmosphere of this sequel.
-          </p>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="glass-card p-8 rounded-2xl relative overflow-hidden group">
-          <div class="h-1 w-12 bg-brand-accent rounded-full mb-6 group-hover:w-full transition-all duration-300"></div>
-          <span class="text-xs font-mono text-brand-accent tracking-widest font-semibold">03 / THE MOMENTS</span>
-          <h3 class="font-display text-2xl font-bold text-white mt-3 mb-3">Make your own fun.</h3>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Interactive physics props, spatial toys, and intuitive hands-on mechanics turn standard hangouts into unpredictable, memorable moments.
-          </p>
-        </article>
-
-      </div>
-
-      <p class="mt-8 text-xs text-slate-400 italic">
-        * Feature goals shown above. Final release specifications will be documented in each build's official release notes.
+    <section id="about" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
+      <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">A new chapter</span>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-6">A place worth hanging around.</h2>
+      <p class="max-w-2xl text-muted text-base sm:text-lg mb-12">
+        Poly Room: The Clean Side is a separate sequel to Poly Room. The focus is on social spaces, physical interaction, and giving friends more ways to make their own fun.
       </p>
-    </section>
 
-    <!-- Sneak Peek / Interactive Gallery Section with Discord-style Spoilers -->
-    <section id="gallery" class="py-20 max-w-6xl mx-auto px-6">
-      <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">In-Development Teaser</span>
-          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mt-2 tracking-tight">
-            Early Gameplay Leak
-          </h2>
-          <p class="mt-2 text-slate-300 max-w-xl text-base">
-            Exclusive unreleased snapshots from early Quest standalone playtests. Click spoiler images to reveal content.
-          </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-8 rounded-3xl border border-[#23352b] bg-[#131c17] relative overflow-hidden group hover:border-accent/40 transition-all">
+          <span class="text-accent font-mono text-xs font-bold">01 / THE PEOPLE</span>
+          <h3 class="font-heading font-bold text-2xl text-white mt-4 mb-3">Company comes first.</h3>
+          <p class="text-muted text-sm leading-relaxed">The goal is a place to talk, relax, and spend time together without needing to join a match.</p>
         </div>
 
-        <button onclick="revealAllSpoilers()" class="inline-flex items-center space-x-2 text-xs font-mono text-brand-accent border border-brand-accent/30 bg-brand-accent/10 hover:bg-brand-accent hover:text-brand-bg px-4 py-2.5 rounded-xl transition-all duration-200 self-start md:self-auto">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-          </svg>
-          <span id="reveal-all-text">Reveal All Spoilers</span>
-        </button>
+        <div class="p-8 rounded-3xl border border-[#23352b] bg-[#131c17] relative overflow-hidden group hover:border-accent/40 transition-all">
+          <span class="text-accent font-mono text-xs font-bold">02 / THE SPACES</span>
+          <h3 class="font-heading font-bold text-2xl text-white mt-4 mb-3">Make yourself at home.</h3>
+          <p class="text-muted text-sm leading-relaxed">More inviting environments, warmer lighting, and more detailed spaces are the sequel’s visual direction.</p>
+        </div>
+
+        <div class="p-8 rounded-3xl border border-[#23352b] bg-[#131c17] relative overflow-hidden group hover:border-accent/40 transition-all">
+          <span class="text-accent font-mono text-xs font-bold">03 / THE MOMENTS</span>
+          <h3 class="font-heading font-bold text-2xl text-white mt-4 mb-3">Make your own fun.</h3>
+          <p class="text-muted text-sm leading-relaxed">Playful objects and hands-on interactions are intended to turn ordinary hangouts into memorable moments.</p>
+        </div>
       </div>
+    </section>
 
-      <!-- Spoiler Image Gallery Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Download Section -->
+    <section id="download" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 sm:p-12 rounded-3xl border border-[#23352b] bg-[#131c17] relative">
+        <div>
+          <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Download</span>
+          <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-4">Meet you on<br>the clean side.</h2>
+          <p class="text-muted text-base mb-6">
+            Sequel builds will be available through GitHub Releases. Check the release notes for compatibility and installation details.
+          </p>
+          <p class="text-muted text-xs">This website provides downloads. The VR game runs on your headset.</p>
+        </div>
 
-        <!-- Spoiler Card 1: Hands & Shadow -->
-        <div class="spoiler-card relative glass-card rounded-2xl overflow-hidden border border-brand-border aspect-video cursor-pointer select-none group" onclick="toggleSpoiler(this)">
-          
-          <!-- Image Graphic (Rendered VR Screenshot 1) -->
-          <div class="spoiler-image absolute inset-0 w-full h-full filter blur-2xl scale-110 transition-all duration-500 ease-out">
-            <svg class="w-full h-full object-cover" viewBox="0 0 1000 562" preserveAspectRatio="xMidYMid slice">
-              <!-- Hardwood Floor -->
-              <rect width="1000" height="562" fill="#c48a56"/>
-              <path d="M0,80 L1000,80 M0,180 L1000,180 M0,280 L1000,280 M0,380 L1000,380 M0,480 L1000,480" stroke="#8a572a" stroke-width="6"/>
-              <path d="M120,0 L120,562 M320,0 L320,562 M520,0 L520,562 M720,0 L720,562 M920,0 L920,562" stroke="#6e421c" stroke-width="4"/>
-              <!-- Shadow -->
-              <circle cx="480" cy="420" r="110" fill="#2d1c10" opacity="0.65"/>
-              <path d="M410,310 Q420,250 400,220 M550,300 Q540,250 560,220" stroke="#2d1c10" stroke-width="16" stroke-linecap="round" opacity="0.65"/>
-              <!-- Hands -->
-              <capsule cx="20" cy="380" rx="20" ry="80" fill="#fff5ea" transform="rotate(-30 20 380)"/>
-              <capsule cx="980" cy="380" rx="20" ry="80" fill="#fff5ea" transform="rotate(30 980 380)"/>
-              <!-- Shirt Rim -->
-              <path d="M0,562 Q500,400 1000,562" fill="#d1ef9d"/>
-            </svg>
+        <div class="p-8 rounded-2xl bg-[#090d0b] border border-[#23352b] flex flex-col justify-between">
+          <div>
+            <span id="release-status" class="text-accent text-xs font-mono font-bold tracking-widest uppercase">NO PUBLIC BUILD LINKED</span>
+            <h3 id="release-title" class="font-heading font-bold text-2xl text-white mt-2 mb-2">Coming soon</h3>
+            <p id="release-description" class="text-muted text-xs sm:text-sm mb-6">A sequel download will appear here when a build is ready.</p>
           </div>
 
-          <!-- Dark Overlay Shield -->
-          <div class="spoiler-overlay absolute inset-0 bg-brand-bg/80 backdrop-blur-md transition-opacity duration-300 flex items-center justify-center p-4">
-            <div class="inline-flex items-center space-x-2 bg-black/80 hover:bg-black text-white px-4 py-2 rounded-full font-sans font-bold text-xs tracking-widest uppercase border border-white/20 shadow-xl transition-transform group-hover:scale-105">
-              <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a8.98 8.98 0 013.122-.563c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-2.022 3.65m-2.122 2.122A9.957 9.957 0 0112 19c-1.55 0-3.03-.35-4.358-1.025"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18"/>
-              </svg>
-              <span>SPOILER</span>
+          <div>
+            <a id="download-button" class="w-full inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#23352b] text-[#9ba8a0] font-bold text-sm tracking-wide cursor-default transition-all mb-4" role="link" aria-disabled="true">
+              Download not available yet
+            </a>
+            <div class="flex items-center justify-between text-xs text-muted">
+              <span id="release-info">Target: Meta Quest 3</span>
+              <a id="release-notes" class="text-accent hover:underline" hidden>Read release notes ↗</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Re-cover Pill Button (Shown when revealed) -->
-          <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
-  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3" />
-  </svg>
-  Hide
-          </button>
-          
+    <!-- Install Steps -->
+    <section id="install" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
+      <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Getting started</span>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-10">From download to headset.</h2>
+
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 text-muted list-none p-0">
+        <li class="p-6 rounded-2xl border border-[#23352b] bg-[#131c17] flex flex-col gap-3">
+          <span class="text-accent font-mono text-xl font-bold">01</span>
+          <p class="text-sm">Download the sequel APK when a release becomes available.</p>
+        </li>
+        <li class="p-6 rounded-2xl border border-[#23352b] bg-[#131c17] flex flex-col gap-3">
+          <span class="text-accent font-mono text-xl font-bold">02</span>
+          <p class="text-sm">Follow that release’s instructions to install the APK using a compatible Quest sideloading tool.</p>
+        </li>
+        <li class="p-6 rounded-2xl border border-[#23352b] bg-[#131c17] flex flex-col gap-3">
+          <span class="text-accent font-mono text-xl font-bold">03</span>
+          <p class="text-sm">Launch the installed game on your headset and join your friends.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
+      <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">A few things to know</span>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-10">Before you jump in.</h2>
+
+      <div class="space-y-4 max-w-3xl">
+        <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
+          <summary class="font-heading font-bold text-lg text-white flex justify-between items-center list-none">
+            Is this the original Poly Room?
+            <span class="text-accent transition-transform group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-muted text-sm mt-4 leading-relaxed">No. Poly Room: The Clean Side is a separate sequel. Downloads on this page should be builds of the sequel.</p>
+        </details>
+
+        <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
+          <summary class="font-heading font-bold text-lg text-white flex justify-between items-center list-none">
+            Does the sequel have worldwide multiplayer?
+            <span class="text-accent transition-transform group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-muted text-sm mt-4 leading-relaxed">Networking support has not been confirmed for a public sequel release. Check the release notes for supported connections and player counts.</p>
+        </details>
+
+        <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
+          <summary class="font-heading font-bold text-lg text-white flex justify-between items-center list-none">
+            Where are the gameplay screenshots?
+            <span class="text-accent transition-transform group-open:rotate-180">↓</span>
+          </summary>
+          <p class="text-muted text-sm mt-4 leading-relaxed">Verified screenshots of the sequel can be found above in the spoiler gallery as development progresses.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#23352b] py-12 mt-20 text-muted text-xs">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <span class="font-heading font-bold tracking-wider text-white">POLY ROOM: THE CLEAN SIDE</span>
+      <span>Independent project. Not affiliated with Rec Room or Meta.</span>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Spoiler Gallery Toggle Interactivity
+    document.querySelectorAll('.spoiler-card').forEach(card => {
+      const rehideBtn = card.querySelector('.spoiler-rehide-btn');
+
+      card.addEventListener('click', (e) => {
+        // If clicking rehide button directly, handle in its own listener
+        if (e.target.closest('.spoiler-rehide-btn')) return;
+        
+        card.classList.add('is-revealed');
+      });
+
+      if (rehideBtn) {
+        rehideBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          card.classList.remove('is-revealed');
+        });
+      }
+    });
+
+    // Release APK URL Configuration Handler
+    const release = {
+      apkUrl: "",
+      notesUrl: "",
+      version: "",
+      fileSize: ""
+    };
+
+    function validGitHubUrl(value) {
+      try {
+        const url = new URL(value);
+        if (url.protocol === "https:" && url.hostname === "github.com" && !url.username && !url.password) {
+          return url.href;
+        }
+      } catch {
+        return null;
+      }
+      return null;
+    }
+
+    const apkUrl = validGitHubUrl(release.apkUrl);
+    const notesUrl = validGitHubUrl(release.notesUrl);
+
+    if (apkUrl) {
+      const button = document.getElementById("download-button");
+      button.href = apkUrl;
+      button.removeAttribute("aria-disabled");
+      button.className = "w-full inline-flex items-center justify-center px-6 py-4 rounded-xl bg-accent text-bgDark font-bold text-sm tracking-wide hover:bg-accentHover transition-all shadow-[0_0_25px_rgba(209,239,157,0.3)] mb-4";
+      button.textContent = "Download Quest APK ↗";
+
+      document.getElementById("release-status").textContent = "BUILD AVAILABLE";
+      document.getElementById("release-title").textContent = release.version || "Sequel build";
+      document.getElementById("release-description").textContent = "Download Poly Room: The Clean Side from GitHub Releases.";
+      document.getElementById("release-info").textContent = ["Meta Quest 3", release.fileSize].filter(Boolean).join(" · ");
+    }
+
+    if (notesUrl) {
+      const link = document.getElementById("release-notes");
+      link.href = notesUrl;
+      link.hidden = false;
+    }
+  </script>
+</body>
+</html>
