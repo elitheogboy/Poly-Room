@@ -55,12 +55,12 @@
       background: #344d3f;
     }
 
-    /* Spoiler Image Hover & Blur States */
+    /* Spoiler Card Hover & Blur States */
     .spoiler-card.is-revealed .spoiler-overlay {
       opacity: 0;
       pointer-events: none;
     }
-    .spoiler-card.is-revealed .spoiler-img {
+    .spoiler-card.is-revealed .spoiler-blur-target {
       filter: none;
     }
     .spoiler-card.is-revealed .spoiler-rehide-btn {
@@ -131,16 +131,47 @@
       </div>
     </section>
 
-    <!-- Sneak Peek Gallery Section (Discord Spoilers) -->
+    <!-- Sneak Peek Gallery & Video Section (Discord Spoilers) -->
     <section id="gallery" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
           <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Sneak Peek</span>
-          <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2">Early development snapshots.</h2>
+          <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2">Early development footage.</h2>
         </div>
         <p class="text-muted text-sm max-w-md">
-          Images from current test builds. Click any preview card to reveal the screenshot, just like Discord.
+          In-engine alpha previews and snapshots. Click any preview card to reveal, just like Discord.
         </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Spoiler Video Card -->
+        <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl md:col-span-2">
+          <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
+            Hide Video
+          </button>
+
+          <div class="spoiler-overlay absolute inset-0 bg-black/85 backdrop-blur-2xl z-10 flex flex-col items-center justify-center p-6 text-center transition-all duration-300 group-hover:bg-black/80">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/10 text-white font-bold text-xs tracking-widest uppercase mb-3 shadow-2xl">
+              <svg class="w-4 h-4 text-orangeNeon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              SPOILER VIDEO
+            </div>
+            <p class="text-xs text-muted">Click to reveal alpha gameplay video</p>
+          </div>
+
+          <div class="aspect-video w-full overflow-hidden bg-black relative">
+            <video class="spoiler-blur-target w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" autoplay muted loop playsinline>
+              <source src="1000014826.mp4" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+          </div>
+          <div class="p-5 bg-[#131c17] relative z-0 flex items-center justify-between">
+            <div>
+              <span class="text-orangeNeon text-[11px] font-bold tracking-widest uppercase">Alpha 0.4 Footage</span>
+              <h3 class="font-heading font-bold text-xl text-white mt-1">Rooftop terrace, fountain & interactive chess</h3>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -160,7 +191,7 @@
           </div>
 
           <div class="aspect-video w-full overflow-hidden bg-black relative">
-            <img src="1000014820_2.png" alt="Hand shadows and floor" class="spoiler-img w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" />
+            <img src="1000014820_2.png" alt="Hand shadows and floor" class="spoiler-blur-target w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" />
           </div>
           <div class="p-4 bg-[#131c17] relative z-0">
             <span class="text-accent text-[11px] font-bold tracking-widest uppercase">Environment Test 01</span>
@@ -184,7 +215,7 @@
           </div>
 
           <div class="aspect-video w-full overflow-hidden bg-black relative">
-            <img src="1000014819_2.png" alt="Mug prop interaction" class="spoiler-img w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" />
+            <img src="1000014819_2.png" alt="Mug prop interaction" class="spoiler-blur-target w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" />
           </div>
           <div class="p-4 bg-[#131c17] relative z-0">
             <span class="text-accent text-[11px] font-bold tracking-widest uppercase">Interaction Test 02</span>
@@ -208,7 +239,7 @@
           </div>
 
           <div class="aspect-video w-full overflow-hidden bg-black relative">
-            <img src="1000014818_2.png" alt="Rooftop terrace and fountain" class="spoiler-img w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" />
+            <img src="1000014818_2.png" alt="Rooftop terrace and fountain" class="spoiler-blur-target w-full h-full object-cover filter blur-2xl transition-all duration-500 scale-105" />
           </div>
           <div class="p-4 bg-[#131c17] relative z-0">
             <span class="text-accent text-[11px] font-bold tracking-widest uppercase">Outdoor Space 03</span>
@@ -334,10 +365,10 @@
 
         <details class="group p-6 rounded-2xl border border-[#23352b] bg-[#131c17] cursor-pointer">
           <summary class="font-heading font-bold text-lg text-white flex justify-between items-center list-none">
-            Where are the gameplay screenshots?
+            Where are the gameplay screenshots & videos?
             <span class="text-accent transition-transform group-open:rotate-180">↓</span>
           </summary>
-          <p class="text-muted text-sm mt-4 leading-relaxed">Verified screenshots of the sequel can be found above in the sneak peek gallery as development progresses.</p>
+          <p class="text-muted text-sm mt-4 leading-relaxed">Verified footage and screenshots of the sequel can be found above in the sneak peek gallery as development progresses.</p>
         </details>
       </div>
     </section>
@@ -353,7 +384,7 @@
 
   <!-- JavaScript -->
   <script>
-    // Spoiler Gallery Toggle Interactivity
+    // Spoiler Gallery & Video Toggle Interactivity
     document.querySelectorAll('.spoiler-card').forEach(card => {
       const rehideBtn = card.querySelector('.spoiler-rehide-btn');
 
