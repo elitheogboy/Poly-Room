@@ -370,6 +370,14 @@
       notesUrl: "",
       version: "",
       fileSize: ""
+      // ... inside your script where apkUrl is handled, add this logic for the secondary button:
+const secondaryUrl = validGitHubUrl(release.secondaryUrl) || (release.secondaryUrl.startsWith('https://') ? release.secondaryUrl : null);
+if (secondaryUrl) {
+  const secondaryBtn = document.getElementById("secondary-download-button");
+  secondaryBtn.href = secondaryUrl;
+  secondaryBtn.textContent = release.secondaryLabel || "External Link ↗";
+  secondaryBtn.hidden = false;
+}
     };
 
     function validGitHubUrl(value) {
