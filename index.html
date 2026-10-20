@@ -277,8 +277,7 @@
         </div>
       </div>
     </section>
-    
-<!-- Download Section -->
+        <!-- Download Section -->
     <section id="download" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 sm:p-12 rounded-3xl border border-[#23352b] bg-[#131c17] relative">
         <div>
@@ -388,19 +387,27 @@
     // Spoiler Gallery & Video Toggle Interactivity
     document.querySelectorAll('.spoiler-card').forEach(card => {
       const rehideBtn = card.querySelector('.spoiler-rehide-btn');
+      const videoEl = card.querySelector('.spoiler-video-element');
 
       card.addEventListener('click', (e) => {
-        if (e.target.closest('.spoiler-rehide-btn')) return;
+        if (e.target.closest('.spoiler-rehide-btn') || e.target.closest('video')) return;
         card.classList.add('is-revealed');
+        if (videoEl) {
+          videoEl.play();
+        }
       });
 
       if (rehideBtn) {
         rehideBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           card.classList.remove('is-revealed');
+          if (videoEl) {
+            videoEl.pause();
+          }
         });
       }
     });
   </script>
 </body>
-</html>
+          </html>
+          
