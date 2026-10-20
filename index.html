@@ -144,7 +144,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Spoiler Card 1 (Hands & Floor Shadows) -->
+        <!-- Spoiler Card 1 -->
         <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl">
           <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
@@ -168,7 +168,7 @@
           </div>
         </div>
 
-        <!-- Spoiler Card 2 (Mug Prop Holding) -->
+        <!-- Spoiler Card 2 -->
         <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl">
           <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
@@ -192,7 +192,7 @@
           </div>
         </div>
 
-        <!-- Spoiler Card 3 (Rooftop Fountain Terrace) -->
+        <!-- Spoiler Card 3 -->
         <div class="spoiler-card relative group rounded-2xl overflow-hidden border border-[#23352b] bg-[#131c17] transition-all hover:border-accent/50 cursor-pointer shadow-xl">
           <button class="spoiler-rehide-btn absolute top-3 right-3 hidden bg-black/70 hover:bg-black text-slate-200 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 transition-all z-20 flex items-center gap-1.5 shadow-lg">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.11 10.11 0 012.122-.063c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21f-9-9m0 0L3 3"/></svg>
@@ -216,8 +216,9 @@
           </div>
         </div>
       </div>
-                                                                                                           </section>
-          <!-- About Section -->
+    </section>
+
+    <!-- About Section -->
     <section id="about" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
       <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">A new chapter</span>
       <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-6">A place worth hanging around.</h2>
@@ -245,15 +246,14 @@
         </div>
       </div>
     </section>
-
-    <!-- Download Section -->
+        <!-- Download Section -->
     <section id="download" class="max-w-6xl mx-auto px-6 py-20 border-t border-[#23352b]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 sm:p-12 rounded-3xl border border-[#23352b] bg-[#131c17] relative">
         <div>
           <span class="text-orangeNeon text-xs font-bold tracking-[0.2em] uppercase">Download</span>
           <h2 class="font-heading font-bold text-3xl sm:text-5xl tracking-tight mt-2 mb-4">Meet you on<br>the clean side.</h2>
           <p class="text-muted text-base mb-6">
-            Sequel builds will be available through GitHub Releases. Check the release notes for compatibility and installation details.
+            Sequel builds will be available through GitHub Releases or direct mirrors. Check installation details below.
           </p>
           <p class="text-muted text-xs">This website provides downloads. The VR game runs on your headset.</p>
         </div>
@@ -265,7 +265,7 @@
             <p id="release-description" class="text-muted text-xs sm:text-sm mb-6">A sequel download will appear here when a build is ready.</p>
           </div>
 
-                    <div>
+          <div>
             <div class="flex flex-col sm:flex-row gap-3 mb-4">
               <a id="download-button" class="flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-[#23352b] text-[#9ba8a0] font-bold text-sm tracking-wide cursor-default transition-all" role="link" aria-disabled="true">
                 Download not available yet
@@ -364,26 +364,20 @@
       }
     });
 
-    // Release APK URL Configuration Handler
+    // Release APK URL Configuration
     const release = {
-      apkUrl: "",
+      apkUrl: "", // Put primary GitHub URL here when ready
+      secondaryUrl: "https://gofile.io/d/13IYvTw1", // Gofile link
+      secondaryLabel: "Gofile Download ↗",
       notesUrl: "",
-      version: "",
-      fileSize: ""
-      // ... inside your script where apkUrl is handled, add this logic for the secondary button:
-const secondaryUrl = validGitHubUrl(release.secondaryUrl) || (release.secondaryUrl.startsWith('https://') ? release.secondaryUrl : null);
-if (secondaryUrl) {
-  const secondaryBtn = document.getElementById("secondary-download-button");
-  secondaryBtn.href = secondaryUrl;
-  secondaryBtn.textContent = release.secondaryLabel || "External Link ↗";
-  secondaryBtn.hidden = false;
-}
+      version: "Alpha Build",
+      fileSize: "Standalone APK"
     };
 
-    function validGitHubUrl(value) {
+    function validateUrl(value) {
       try {
         const url = new URL(value);
-        if (url.protocol === "https:" && url.hostname === "github.com" && !url.username && !url.password) {
+        if (url.protocol === "https:" || url.protocol === "http:") {
           return url.href;
         }
       } catch {
@@ -392,20 +386,30 @@ if (secondaryUrl) {
       return null;
     }
 
-    const apkUrl = validGitHubUrl(release.apkUrl);
-    const notesUrl = validGitHubUrl(release.notesUrl);
+    const apkUrl = validateUrl(release.apkUrl);
+    const secondaryUrl = validateUrl(release.secondaryUrl);
+    const notesUrl = validateUrl(release.notesUrl);
+
+    if (apkUrl || secondaryUrl) {
+      document.getElementById("release-status").textContent = "BUILD AVAILABLE";
+      document.getElementById("release-title").textContent = release.version || "Sequel build";
+      document.getElementById("release-description").textContent = "Download Poly Room: The Clean Side using the links below.";
+      document.getElementById("release-info").textContent = ["Meta Quest 3", release.fileSize].filter(Boolean).join(" · ");
+    }
 
     if (apkUrl) {
       const button = document.getElementById("download-button");
       button.href = apkUrl;
       button.removeAttribute("aria-disabled");
-      button.className = "w-full inline-flex items-center justify-center px-6 py-4 rounded-xl bg-accent text-bgDark font-bold text-sm tracking-wide hover:bg-accentHover transition-all shadow-[0_0_25px_rgba(209,239,157,0.3)] mb-4";
-      button.textContent = "Download Quest APK ↗";
+      button.className = "flex-1 inline-flex items-center justify-center px-6 py-4 rounded-xl bg-accent text-bgDark font-bold text-sm tracking-wide hover:bg-accentHover transition-all shadow-[0_0_25px_rgba(209,239,157,0.3)]";
+      button.textContent = "GitHub APK ↗";
+    }
 
-      document.getElementById("release-status").textContent = "BUILD AVAILABLE";
-      document.getElementById("release-title").textContent = release.version || "Sequel build";
-      document.getElementById("release-description").textContent = "Download Poly Room: The Clean Side from GitHub Releases.";
-      document.getElementById("release-info").textContent = ["Meta Quest 3", release.fileSize].filter(Boolean).join(" · ");
+    if (secondaryUrl) {
+      const secondaryBtn = document.getElementById("secondary-download-button");
+      secondaryBtn.href = secondaryUrl;
+      secondaryBtn.textContent = release.secondaryLabel || "Gofile Link ↗";
+      secondaryBtn.classList.remove("hidden");
     }
 
     if (notesUrl) {
